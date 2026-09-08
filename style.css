@@ -1,0 +1,194 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background: #f5f7f2;
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal {
+  opacity: 1;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(.2, .8, .2, 1);
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================= HERO ================= */
+
+.hero-slide {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 1.2s ease,
+    visibility 1.2s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hero-slide.active img {
+  animation: kenBurns 8s ease-out forwards;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+
+/* ================= HERO TEXT ================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp .9s ease forwards;
+}
+
+
+/* ================= NAVIGATION ================= */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width .3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height .4s ease,
+    opacity .3s ease;
+}
+
+.mobile-menu.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+
+/* ================= GALLERY ================= */
+
+.gallery-card {
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+}
+
+.gallery-card img {
+  transition:
+    transform .9s cubic-bezier(.2, .8, .2, 1),
+    filter .5s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(.8);
+}
+
+.gallery-overlay {
+  opacity: 0;
+  transform: translateY(15px);
+  transition:
+    opacity .4s ease,
+    transform .4s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .4s ease,
+    visibility .4s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-image {
+  opacity: 1;
+  transform: scale(.94);
+
+  transition:
+    transform .45s ease,
+    opacity .2s ease;
+}
+
+.lightbox.open .lightbox-image {
+  transform: scale(1);
+}
+
+
+/* ================= ACCESSIBILITY ================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
